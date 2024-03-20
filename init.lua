@@ -64,6 +64,8 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
+vim.keymap.set('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
+
 -- [[ Basic Autocommands ]]
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
@@ -77,10 +79,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- [[ lazyvim ]]
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
-  vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
+  vim.fn.system({ 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath })
 end ---@diagnostic disable-next-line: undefined-field
 vim.print(lazypath)
 vim.opt.rtp:prepend(lazypath)
