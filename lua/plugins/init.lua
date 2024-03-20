@@ -1,4 +1,67 @@
 return {
+  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+
+  'tpope/vim-abolish',
+
+  { 'numToStr/Comment.nvim', opts = {} },
+
+  { 'lewis6991/gitsigns.nvim', opts = {} },
+
+  {
+    'folke/which-key.nvim',
+    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+    config = function() -- This is the function that runs, AFTER loading
+      require('which-key').setup()
+
+      -- Document existing key chains
+      require('which-key').register {
+        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
+        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
+        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
+        ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+      }
+    end,
+  },
+
+  { -- Autoformat
+    'stevearc/conform.nvim',
+    opts = {
+      notify_on_error = false,
+      format_on_save = function(bufnr)
+        -- Disable "format_on_save lsp_fallback" for languages that don't
+        -- have a well standardized coding style. You can add additional
+        -- languages here or re-enable it for the disabled ones.
+        local disable_filetypes = { c = true, cpp = true }
+        return {
+          timeout_ms = 500,
+          lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+        }
+      end,
+      formatters_by_ft = {
+        lua = { 'stylua' },
+        -- Conform can also run multiple formatters sequentially
+        -- python = { "isort", "black" },
+        --
+        -- You can use a sub-list to tell conform to run *until* a formatter
+        -- is found.
+        -- javascript = { { "prettierd", "prettier" } },
+      },
+    },
+  },
+
+  {
+    'sainnhe/gruvbox-material',
+    priority = 1000, -- Make sure to load this before all the other start plugins.
+    lazy = false,
+    init = function()
+      vim.cmd.colorscheme 'gruvbox-material'
+    end,
+  },
+
+  -- Highlight todo, notes, etc in comments
+  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+
   {
     'tpope/vim-fugitive',
     config = function()
@@ -12,9 +75,44 @@ return {
     dependencies = { 'tpope/vim-rhubarb' },
   },
 
-  { 'tpope/vim-abolish' },
+  {
+    'zbirenbaum/copilot.lua',
+    opts = {
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        debounce = 75,
+        keymap = {
+          accept = '<M-a>',
+          accept_word = false,
+          accept_line = '<M-l>',
+          next = '<M-]>',
+          prev = '<M-[>',
+          dismiss = '<M-d>',
+        },
+      },
+    },
+  },
 
-  { 'zbirenbaum/copilot.lua', opts = {} },
+  {
+    'ojroques/vim-oscyank',
+    config = function()
+      -- Should be accompanied by a setting clipboard in tmux.conf, also see
+      -- https://github.com/ojroques/vim-oscyank#the-plugin-does-not-work-with-tmux
+      vim.g.oscyank_term = 'default'
+      vim.g.oscyank_max_length = 0 -- unlimited
+      -- Below autocmd is for copying to OSC52 for any yank operation,
+      -- see https://github.com/ojroques/vim-oscyank#copying-from-a-register
+      vim.api.nvim_create_autocmd('TextYankPost', {
+        pattern = '*',
+        callback = function()
+          if vim.v.event.operator == 'y' and vim.v.event.regname == '' then
+            vim.cmd 'OSCYankRegister "'
+          end
+        end,
+      })
+    end,
+  },
 
   {
     'stevearc/oil.nvim',
@@ -27,8 +125,6 @@ return {
     event = 'InsertEnter',
     config = true,
   },
-
-  { 'HiPhish/rainbow-delimiters.nvim', depends = { 'nvim-treesitter/nvim-treesitter' } },
 
   {
     'nvim-tree/nvim-tree.lua',
