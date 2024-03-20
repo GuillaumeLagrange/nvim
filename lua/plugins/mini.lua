@@ -8,7 +8,6 @@ return { -- Collection of various small independent plugins/modules
     require('mini.surround').setup()
 
     require('mini.bufremove').setup()
-
     vim.keymap.set('n', '<leader>bd', function()
       local bd = require('mini.bufremove').delete
       if vim.bo.modified then
@@ -27,6 +26,9 @@ return { -- Collection of various small independent plugins/modules
     vim.keymap.set('n', '<leader>bD', function()
       require('mini.bufremove').delete(0, true)
     end, { desc = 'Delete Buffer (force)' })
+
+    require('mini.sessions').setup()
+    require('mini.starter').setup()
 
     -- Simple and easy statusline.
     local statusline = require('mini.statusline')
