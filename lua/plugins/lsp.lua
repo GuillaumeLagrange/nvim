@@ -1,3 +1,5 @@
+-- vim.lsp.set_log_level('DEBUG')
+
 return { -- LSP Configuration & Plugins
   'neovim/nvim-lspconfig',
   dependencies = {
