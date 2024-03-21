@@ -8,20 +8,6 @@ return { -- LSP Configuration & Plugins
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
 
-    -- Useful status updates for LSP.
-    -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-    {
-      'j-hui/fidget.nvim',
-      opts = {
-        progress = {
-          lsp = {
-            progress_ringbuf_size = 2048, -- Configure the nvim's LSP progress ring buffer size
-            log_handler = false, -- Log `$/progress` handler invocations (for debugging)
-          },
-        },
-      },
-    },
-
     -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
     { 'folke/neodev.nvim', opts = {} },
