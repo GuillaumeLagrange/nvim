@@ -14,13 +14,13 @@ return {
       require('which-key').setup()
 
       -- Document existing key chains
-      require('which-key').register {
+      require('which-key').register({
         ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
         ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
         ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-      }
+      })
     end,
   },
 
@@ -55,7 +55,7 @@ return {
     priority = 1000, -- Make sure to load this before all the other start plugins.
     lazy = false,
     init = function()
-      vim.cmd.colorscheme 'gruvbox-material'
+      vim.cmd.colorscheme('gruvbox-material')
     end,
   },
 
@@ -83,8 +83,8 @@ return {
         auto_trigger = true,
         debounce = 75,
         keymap = {
-          accept = '<M-a>',
-          accept_word = false,
+          accept = '<M-y>',
+          accept_word = '<M-w>',
           accept_line = '<M-l>',
           next = '<M-]>',
           prev = '<M-[>',
@@ -107,7 +107,7 @@ return {
         pattern = '*',
         callback = function()
           if vim.v.event.operator == 'y' and vim.v.event.regname == '' then
-            vim.cmd 'OSCYankRegister "'
+            vim.cmd('OSCYankRegister "')
           end
         end,
       })
@@ -130,6 +130,20 @@ return {
     'nvim-tree/nvim-tree.lua',
     config = function()
       require('nvim-tree').setup()
+
+      -- Handle session restore
+      vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+        pattern = 'NvimTree*',
+        callback = function()
+          local view = require('nvim-tree.view')
+          local is_visible = view.is_visible()
+
+          local api = require('nvim-tree.api')
+          if not is_visible then
+            api.tree.open()
+          end
+        end,
+      })
 
       vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { desc = 'Toggle NvimTree' })
     end,
