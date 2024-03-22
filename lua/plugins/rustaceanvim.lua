@@ -6,6 +6,7 @@ vim.g.rustaceanvim = {
     load_vscode_settings = true,
     default_settings = {
       ['rust-analyzer'] = {
+        cachePriming = false,
         rustfmt = {
           extraArgs = {
             '--config',
