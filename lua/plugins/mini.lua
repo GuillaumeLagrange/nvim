@@ -40,5 +40,15 @@ return { -- Collection of various small independent plugins/modules
     statusline.section_location = function()
       return '%2l:%-2v'
     end
+    ---@diagnostic disable-next-line: duplicate-set-field
+    statusline.section_filename = function()
+      -- Relative file name with modified and ro flags
+      return '%f%m%r'
+    end
+    ---@diagnostic disable-next-line: duplicate-set-field
+    statusline.inactive = function()
+      -- Relative file name with modified and ro flags
+      return '%#MiniStatuslineInactive#%f%='
+    end
   end,
 }

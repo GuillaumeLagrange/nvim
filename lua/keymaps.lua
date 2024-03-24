@@ -24,3 +24,4 @@ vim.keymap.set('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Switch to Other Buff
 
 vim.keymap.set('n', '<leader>ut', require('utils').toggle_inlay_hints, { desc = 'Toggle inlay hints' })
 vim.keymap.set('n', '<leader>un', require('utils').toggle_relative_number, { desc = 'Toggle relative line number' })
+vim.keymap.set('n', '<leader>ud', require('utils').toggle_diagnostics, { desc = 'Toggle diagnostics' })

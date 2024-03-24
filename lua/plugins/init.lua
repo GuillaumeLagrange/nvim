@@ -90,14 +90,14 @@ return {
 
   {
     'tpope/vim-fugitive',
-    config = function()
-      vim.keymap.set('n', '<leader>gs', ':Git<CR>', { desc = 'Git status' })
-      vim.keymap.set('n', '<leader>gb', '<cmd>Git blame<cr>', { desc = 'Git blame' })
-      vim.keymap.set('n', '<leader>gr', '<cmd>Gread<cr>', { desc = 'Read buffer' })
-      vim.keymap.set('n', '<leader>gw', '<cmd>Gwrite<cr>', { desc = 'Write buffer' })
+    keys = {
+      { '<leader>gs', '<cmd>Git<CR>', mode = 'n', desc = 'Git status' },
+      { '<leader>gb', '<cmd>Git blame<cr>', mode = 'n', desc = 'Git blame' },
+      { '<leader>gr', '<cmd>Gread<cr>', mode = 'n', desc = 'Read buffer' },
+      { '<leader>gw', '<cmd>Gwrite<cr>', mode = 'n', desc = 'Write buffer' },
 
-      vim.keymap.set({ 'n', 'v' }, '<leader>gy', ':GBrowse!<CR>', { desc = 'Git status' })
-    end,
+      { '<leader>gy', ':GBrowse!<CR>', mode = { 'n', 'v' }, desc = 'Git yank key' },
+    },
     dependencies = { 'tpope/vim-rhubarb' },
   },
 
@@ -155,7 +155,11 @@ return {
   {
     'nvim-tree/nvim-tree.lua',
     config = function()
-      require('nvim-tree').setup()
+      require('nvim-tree').setup({
+        hijack_cursor = true,
+        sync_root_with_cwd = true,
+        respect_buf_cwd = true,
+      })
 
       -- Handle session restore
       vim.api.nvim_create_autocmd({ 'BufEnter' }, {
@@ -171,7 +175,8 @@ return {
         end,
       })
 
-      vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { desc = 'Toggle NvimTree' })
+      vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeFindFileToggle<CR>', { desc = 'Toggle NvimTree' })
+      vim.keymap.set('n', '<leader>E', '<cmd>NvimTreeFindFileToggle!<CR>', { desc = 'Toggle NvimTree' })
     end,
   },
 }
