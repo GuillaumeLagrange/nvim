@@ -15,7 +15,7 @@ return {
 
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
-      { 'nvim-telescope/telescope-project.nvim' },
+      { 'nvim-telescope/telescope-file-browser.nvim' },
 
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
@@ -62,29 +62,26 @@ return {
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
-      pcall(require('telescope').load_extension, 'project')
+      pcall(require('telescope').load_extension, 'file_browser')
 
       -- See `:help telescope.builtin`
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [f]iles' })
-      vim.keymap.set('n', '<leader>sF', builtin.find_files, { desc = '[S]earch git [F]iles' })
+      vim.keymap.set('n', '<leader>sF', builtin.git_files, { desc = '[S]earch git [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.api.nvim_set_keymap(
-        'n',
-        '<leader>sp',
-        ":lua require'telescope'.extensions.project.project({ display_type = 'full' })<CR>",
-        { desc = '[S]earch [P]rojects' }
-      )
-      vim.keymap.set('n', '<leader>b', function()
+      vim.keymap.set('n', '<leader>cd', function()
+        require('telescope').extensions.file_browser.file_browser({ path = require('utils').get_git_root() })
+      end, { desc = 'Cd from git root' })
+      vim.keymap.set('n', '<leader>sb', function()
         builtin.buffers({ sort_mru = true, ignore_current_buffer = true })
       end, {
-        desc = 'Search [B]uffers',
+        desc = '[S]earch [B]uffers',
       })
       vim.keymap.set('n', '<leader>sc', function()
         builtin.find_files({ cwd = vim.fn.stdpath('config') })

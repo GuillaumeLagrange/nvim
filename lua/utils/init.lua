@@ -31,4 +31,12 @@ M.toggle_diagnostics = function()
   end
 end
 
+M.get_git_root = function()
+  local dot_git_path = vim.fn.finddir('.git', '.;')
+  if dot_git_path == '' then
+    return vim.fn.expand('~')
+  end
+  return vim.fn.fnamemodify(dot_git_path, ':h')
+end
+
 return M
