@@ -27,7 +27,9 @@ return { -- Collection of various small independent plugins/modules
       require('mini.bufremove').delete(0, true)
     end, { desc = 'Delete Buffer (force)' })
 
-    require('mini.sessions').setup()
+    require('mini.sessions').setup({
+      verbose = { read = true, write = true, delete = true },
+    })
     require('mini.starter').setup()
 
     -- Simple and easy statusline.

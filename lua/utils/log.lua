@@ -26,4 +26,8 @@ M.warn = function(message, opts)
   })
 end
 
+M.inspect = function(arg)
+  vim.print(vim.inspect(arg))
+end
+
 return M
