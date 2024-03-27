@@ -17,6 +17,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Auto equalize splits when resizing the window
+vim.api.nvim_create_autocmd('VimResized', {
+  desc = 'Resize splits when resizing the window',
+  group = vim.api.nvim_create_augroup('kickstart-resize-splits', { clear = true }),
+  callback = function()
+    vim.cmd('wincmd =')
+  end,
+})
+
 -- [[ lazyvim ]]
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 ---@diagnostic disable-next-line: undefined-field

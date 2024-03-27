@@ -41,3 +41,5 @@ vim.opt.scrolloff = 3
 vim.opt.termguicolors = true
 
 vim.opt.tabstop = 2
+
+vim.o.diffopt = 'internal,filler,closeoff,linematch:60'
