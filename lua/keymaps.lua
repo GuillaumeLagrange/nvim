@@ -22,12 +22,14 @@ vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 
 vim.keymap.set('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
 
-vim.keymap.set('n', '<leader>ut', require('utils').toggle_inlay_hints, { desc = 'Toggle inlay hints' })
+vim.keymap.set('n', '<leader>uh', require('utils').toggle_inlay_hints, { desc = 'Toggle inlay hints' })
 vim.keymap.set('n', '<leader>un', require('utils').toggle_relative_number, { desc = 'Toggle relative line number' })
 vim.keymap.set('n', '<leader>ud', require('utils').toggle_diagnostics, { desc = 'Toggle diagnostics' })
 
 vim.keymap.set('n', '[q', vim.cmd.cprev, { desc = 'Previous quickfix' })
 vim.keymap.set('n', ']q', vim.cmd.cnext, { desc = 'Next quickfix' })
+
+vim.keymap.set('n', '<leader>bo', '<cmd>%bd|e#|bd#<cr>', { desc = 'Delete all buffers except current' })
 
 -- Tabs
 vim.keymap.set('n', '<leader><tab>l', '<cmd>tablast<cr>', { desc = 'Last Tab' })

@@ -26,6 +26,16 @@ vim.api.nvim_create_autocmd('VimResized', {
   end,
 })
 
+-- Help in vertical split by default
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'help',
+  callback = function()
+    vim.bo.bufhidden = 'unload'
+    vim.cmd.wincmd('L')
+    vim.cmd('vertical resize 81')
+  end,
+})
+
 -- [[ lazyvim ]]
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 ---@diagnostic disable-next-line: undefined-field
