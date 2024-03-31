@@ -274,6 +274,7 @@ return {
   {
     'pwntester/octo.nvim',
     cmd = 'Octo',
+    dev = true,
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
