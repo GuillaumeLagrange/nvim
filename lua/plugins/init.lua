@@ -59,8 +59,10 @@ return {
           winblend = 0,
         },
       },
-      lsp = {
-        progress_ringbuf_size = 4096,
+      progress = {
+        lsp = {
+          progress_ringbuf_size = 4096,
+        },
       },
     },
   },
