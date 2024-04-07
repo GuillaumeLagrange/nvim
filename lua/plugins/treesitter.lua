@@ -32,5 +32,5 @@ return {
     end,
   },
 
-  { 'HiPhish/rainbow-delimiters.nvim', depends = { 'nvim-treesitter/nvim-treesitter' } },
+  { 'HiPhish/rainbow-delimiters.nvim', dependencies = { 'nvim-treesitter/nvim-treesitter' } },
 }
