@@ -42,4 +42,6 @@ vim.opt.termguicolors = true
 
 vim.opt.tabstop = 2
 
+vim.opt.updatetime = 1000
+
 vim.o.diffopt = 'internal,filler,closeoff,linematch:60'
