@@ -4,6 +4,12 @@ vim.g.rustaceanvim = {
   -- LSP configuration
   server = {
     load_vscode_settings = true,
+    on_attach = function(client, _)
+      client.server_capabilities.workspace.didChangeWatchedFiles = {
+        dynamicRegistration = false,
+        relativePatternSupport = false,
+      }
+    end,
     default_settings = {
       ['rust-analyzer'] = {
         cachePriming = false,
