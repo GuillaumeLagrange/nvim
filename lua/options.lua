@@ -44,4 +44,5 @@ vim.opt.tabstop = 2
 
 vim.opt.updatetime = 1000
 
-vim.o.diffopt = 'internal,filler,closeoff,linematch:60'
+vim.o.diffopt = 'internal,filler,closeoff,linematch:60,iwhite'
+vim.o.wildignorecase = true
