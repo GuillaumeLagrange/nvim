@@ -9,6 +9,14 @@ vim.g.rustaceanvim = {
         dynamicRegistration = false,
         relativePatternSupport = false,
       }
+
+      vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+        desc = 'Resize splits when resizing the window',
+        pattern = { '*.rs' },
+        callback = function()
+          vim.cmd('RustAnalyzer reloadSettings')
+        end,
+      })
     end,
     default_settings = {
       ['rust-analyzer'] = {

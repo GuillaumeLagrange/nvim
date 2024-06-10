@@ -7,6 +7,8 @@ return { -- Collection of various small independent plugins/modules
     -- Add/delete/replace surroundings (brackets, quotes, etc.)
     require('mini.surround').setup()
 
+    require('mini.files').setup()
+
     require('mini.bufremove').setup()
     vim.keymap.set('n', '<leader>bd', function()
       local bd = require('mini.bufremove').delete

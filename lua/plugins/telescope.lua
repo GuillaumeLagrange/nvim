@@ -18,6 +18,8 @@ return {
       { 'nvim-telescope/telescope-file-browser.nvim' },
 
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+
+      { 'jonarrien/telescope-cmdline.nvim' },
     },
 
     config = function()
@@ -63,6 +65,7 @@ return {
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'file_browser')
+      pcall(require('telescope').load_extension, 'cmdline')
 
       -- See `:help telescope.builtin`
       local builtin = require('telescope.builtin')
@@ -83,6 +86,7 @@ return {
       end, {
         desc = '[S]earch [B]uffers',
       })
+      -- Shortcut for searching your Neovim configuration files
       vim.keymap.set('n', '<leader>sc', function()
         builtin.find_files({ cwd = vim.fn.stdpath('config') })
       end, { desc = '[S]earch Recent Files ("." for repeat)' })
@@ -107,10 +111,7 @@ return {
         })
       end, { desc = '[S]earch [/] in Open Files' })
 
-      -- Shortcut for searching your Neovim configuration files
-      vim.keymap.set('n', '<leader>sn', function()
-        builtin.find_files({ cwd = vim.fn.stdpath('config') })
-      end, { desc = '[S]earch [N]eovim files' })
+      vim.keymap.set('n', '<leader>;', '<CMD>Telescope cmdline<CR>', { desc = 'fuzzy cmdline' })
     end,
   },
 }

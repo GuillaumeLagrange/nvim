@@ -46,3 +46,7 @@ vim.opt.updatetime = 1000
 
 vim.o.diffopt = 'internal,filler,closeoff,linematch:60,iwhite'
 vim.o.wildignorecase = true
+
+vim.o.foldmethod = 'expr'
+vim.o.foldlevelstart = 99
+vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'

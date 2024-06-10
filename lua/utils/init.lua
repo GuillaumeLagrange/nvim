@@ -3,11 +3,7 @@ local log = require('utils.log')
 local M = {}
 
 M.toggle_inlay_hints = function(bufnr)
-  if vim.lsp.inlay_hint.is_enabled(bufnr) then
-    vim.lsp.inlay_hint.enable(bufnr, false)
-  else
-    vim.lsp.inlay_hint.enable(bufnr, true)
-  end
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr }), { bufnr })
 end
 
 M.toggle_relative_number = function()
@@ -22,13 +18,7 @@ M.toggle_relative_number = function()
 end
 
 M.toggle_diagnostics = function()
-  if vim.diagnostic.is_disabled() then
-    vim.diagnostic.enable()
-    log.info('Enabled diagnostics', { title = 'Diagnostics' })
-  else
-    vim.diagnostic.disable()
-    log.info('Disabled diagnostics', { title = 'Diagnostics' })
-  end
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end
 
 M.get_git_root = function()
