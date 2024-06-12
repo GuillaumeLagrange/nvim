@@ -2,6 +2,13 @@ local log = require('utils.log')
 
 local M = {}
 
+local is_underline_enabled = false
+vim.diagnostic.config({ underline = is_underline_enabled })
+M.toggle_diagnostic_underline = function()
+  is_underline_enabled = not is_underline_enabled
+  vim.diagnostic.config({ underline = is_underline_enabled })
+end
+
 M.toggle_inlay_hints = function(bufnr)
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr }), { bufnr })
 end

@@ -1,4 +1,5 @@
--- [[ Basic Keymaps ]]
+local utils = require('utils')
+
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -18,13 +19,14 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
-vim.keymap.set('n', '-', '<CMD>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>', { desc = 'Open MiniFiles' })
+vim.keymap.set('n', '-', '<CMD>lua MiniFiles.open(vim.api.nvim_buf_get_name(0)); MiniFiles.reveal_cwd()<CR>', { desc = 'Open MiniFiles' })
 
 vim.keymap.set('n', '<leader>bb', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
 
-vim.keymap.set('n', '<leader>uh', require('utils').toggle_inlay_hints, { desc = 'Toggle inlay hints' })
-vim.keymap.set('n', '<leader>un', require('utils').toggle_relative_number, { desc = 'Toggle relative line number' })
-vim.keymap.set('n', '<leader>ud', require('utils').toggle_diagnostics, { desc = 'Toggle diagnostics' })
+vim.keymap.set('n', '<leader>uh', utils.toggle_inlay_hints, { desc = 'Toggle inlay hints' })
+vim.keymap.set('n', '<leader>un', utils.toggle_relative_number, { desc = 'Toggle relative line number' })
+vim.keymap.set('n', '<leader>ud', utils.toggle_diagnostics, { desc = 'Toggle diagnostics' })
+vim.keymap.set('n', '<leader>uu', utils.toggle_diagnostic_underline, { desc = 'Toggle underlines' })
 
 vim.keymap.set('n', '[q', vim.cmd.cprev, { desc = 'Previous quickfix' })
 vim.keymap.set('n', ']q', vim.cmd.cnext, { desc = 'Next quickfix' })
