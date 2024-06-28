@@ -159,45 +159,39 @@ return {
     end,
   },
 
-  -- {
-  --   'stevearc/oil.nvim',
-  --   opts = {},
-  --   dependencies = { 'nvim-tree/nvim-web-devicons' },
-  -- },
-  --
   {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
     config = true,
   },
 
-  -- {
-  --   'nvim-tree/nvim-tree.lua',
-  --   config = function()
-  --     require('nvim-tree').setup({
-  --       hijack_cursor = true,
-  --       sync_root_with_cwd = true,
-  --       respect_buf_cwd = true,
-  --     })
-  --
-  --     -- Handle session restore
-  --     vim.api.nvim_create_autocmd({ 'BufEnter' }, {
-  --       pattern = 'NvimTree*',
-  --       callback = function()
-  --         local view = require('nvim-tree.view')
-  --         local is_visible = view.is_visible()
-  --
-  --         local api = require('nvim-tree.api')
-  --         if not is_visible then
-  --           api.tree.open()
-  --         end
-  --       end,
-  --     })
-  --
-  --     vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeFindFileToggle<CR>', { desc = 'Toggle NvimTree' })
-  --     vim.keymap.set('n', '<leader>E', '<cmd>NvimTreeFindFileToggle!<CR>', { desc = 'Toggle NvimTree' })
-  --   end,
-  -- },
+  {
+    'nvim-tree/nvim-tree.lua',
+    config = function()
+      require('nvim-tree').setup({
+        hijack_cursor = true,
+        sync_root_with_cwd = true,
+        respect_buf_cwd = true,
+      })
+
+      -- Handle session restore
+      vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+        pattern = 'NvimTree*',
+        callback = function()
+          local view = require('nvim-tree.view')
+          local is_visible = view.is_visible()
+
+          local api = require('nvim-tree.api')
+          if not is_visible then
+            api.tree.open()
+          end
+        end,
+      })
+
+      vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeFindFileToggle<CR>', { desc = 'Toggle NvimTree' })
+      vim.keymap.set('n', '<leader>E', '<cmd>NvimTreeFindFileToggle!<CR>', { desc = 'Toggle NvimTree' })
+    end,
+  },
 
   {
     'ThePrimeagen/harpoon',
@@ -274,6 +268,10 @@ return {
       picker = 'telescope',
       use_local_fs = true,
       enable_builtin = true,
+    },
+    keys = {
+      { '<leader>gpo', '<cmd>Octo pr<CR>', mode = 'n', desc = 'Open PR for current branch' },
+      { '<leader>gpy', '<cmd>Octo pr url<CR>', mode = 'n', desc = 'Yank PR url' },
     },
   },
 
