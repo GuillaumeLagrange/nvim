@@ -30,8 +30,10 @@ return { -- Collection of various small independent plugins/modules
     end, { desc = 'Delete Buffer (force)' })
 
     require('mini.sessions').setup({
-      verbose = { read = true, write = true, delete = true },
+      file = '',
+      verbose = { read = true, write = false, delete = true },
     })
+
     require('mini.starter').setup()
 
     -- Simple and easy statusline.

@@ -5,6 +5,7 @@ vim.g.maplocalleader = ' '
 require('options')
 require('keymaps')
 require('term')
+require('session')
 
 -- [[ Basic Autocommands ]]
 -- Highlight when yanking (copying) text
