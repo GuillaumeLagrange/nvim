@@ -21,7 +21,7 @@ if vim.fn.argc(-1) == 0 then
         MiniSessions.write()
       end
 
-      if MiniSessions.detected[session_name] and string.find(vim.v.this_session, session_name) == nil then
+      if MiniSessions.detected[session_name] and string.find(vim.v.this_session, session_name, 1, true) == nil then
         MiniSessions.read(session_name)
       else
         -- If we are opening a new branch, create a session for the new branch with current state
