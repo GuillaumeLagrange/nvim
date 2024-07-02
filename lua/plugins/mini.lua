@@ -34,8 +34,6 @@ return { -- Collection of various small independent plugins/modules
       verbose = { read = true, write = false, delete = true },
     })
 
-    require('mini.starter').setup()
-
     -- Simple and easy statusline.
     local statusline = require('mini.statusline')
     statusline.setup({ use_icons = vim.g.have_nerd_font })
