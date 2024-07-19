@@ -272,6 +272,7 @@ return {
     keys = {
       { '<leader>gpo', '<cmd>Octo pr<CR>', mode = 'n', desc = 'Open PR for current branch' },
       { '<leader>gpy', '<cmd>Octo pr url<CR>', mode = 'n', desc = 'Yank PR url' },
+      { '<leader>gca', '<cmd>Octo comment add<CR>', mode = 'n', desc = 'Open PR for current branch' },
     },
   },
 

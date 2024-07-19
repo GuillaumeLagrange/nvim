@@ -31,7 +31,7 @@ vim.keymap.set('n', '<leader>uu', utils.toggle_diagnostic_underline, { desc = 'T
 vim.keymap.set('n', '[q', vim.cmd.cprev, { desc = 'Previous quickfix' })
 vim.keymap.set('n', ']q', vim.cmd.cnext, { desc = 'Next quickfix' })
 
-vim.keymap.set('n', '<leader>bo', '<cmd>%bd|e#|bd#<cr>', { desc = 'Delete all buffers except current' })
+vim.keymap.set('n', '<leader>bo', '<cmd>%bd!|e#|bd!#<cr>', { desc = 'Delete all buffers except current' })
 
 -- Tabs
 vim.keymap.set('n', '<leader><tab>l', '<cmd>tablast<cr>', { desc = 'Last Tab' })
