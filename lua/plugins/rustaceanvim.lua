@@ -2,8 +2,19 @@ vim.g.rustaceanvim = {
   -- Plugin configuration
   tools = {},
   -- LSP configuration
+  ---@type RustaceanLspClientOpts
   server = {
     load_vscode_settings = true,
+    auto_attach = function(bufnr)
+      -- Lsp auto start causes mini freezes because of how review buffers are handled
+      local review = require('octo.reviews').get_current_review()
+      if review then
+        -- cant find an active review
+        return false
+      end
+
+      return true
+    end,
     on_attach = function(client, _)
       client.server_capabilities.workspace.didChangeWatchedFiles = {
         dynamicRegistration = false,
