@@ -272,7 +272,16 @@ return {
     keys = {
       { '<leader>gpo', '<cmd>Octo pr<CR>', mode = 'n', desc = 'Open PR for current branch' },
       { '<leader>gpy', '<cmd>Octo pr url<CR>', mode = 'n', desc = 'Yank PR url' },
-      { '<leader>gca', '<cmd>Octo comment add<CR>', mode = 'n', desc = 'Open PR for current branch' },
+      {
+        '<leader>gpr',
+        function()
+          vim.g.auto_ra_attach = not vim.g.auto_ra_attach
+          vim.print(vim.g.auto_ra_attach)
+        end,
+        mode = 'n',
+        desc = 'Disable ra auto attach',
+      },
+      { '<leader>gca', '<cmd>Octo comment add<CR>', mode = 'n', desc = 'Add comment' },
     },
   },
 
