@@ -72,4 +72,5 @@ require('lazy').setup({ import = 'plugins' }, {
       lazy = '💤 ',
     },
   },
+  lockfile = '~/home-manager/nvim/lazy-lock.json'
 })
