@@ -95,7 +95,7 @@ return { -- LSP Configuration & Plugins
         nixd = {
           options = {
             home_manager = {
-              expr = '(builtins.getFlake "/home/glagrange/.config/home-manager").homeConfigurations."glagrange".options',
+              expr = '(builtins.getFlake "/home/guillaume/home-manager").homeConfigurations."guillaume".options',
             },
           },
         },
