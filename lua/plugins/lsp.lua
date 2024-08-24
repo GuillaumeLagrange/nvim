@@ -90,12 +90,20 @@ return { -- LSP Configuration & Plugins
 
     -- Enable lua lsp
     require('lspconfig').lua_ls.setup({})
+    require('lspconfig').jsonls.setup({})
+    local flakePath = '(builtins.getFlake "/home/guillaume/dotfiles")'
     require('lspconfig').nixd.setup({
       settings = {
         nixd = {
+          nixpkgs = {
+            expr = 'import' .. flakePath .. '.inputs.nixpkgs { }',
+          },
           options = {
             home_manager = {
-              expr = '(builtins.getFlake "/home/guillaume/home-manager").homeConfigurations."guillaume".options',
+              expr = flakePath .. '.homeConfigurations.guillaume.options',
+            },
+            nixos = {
+              expr = flakePath .. '.nixosConfigurations.xps.options',
             },
           },
         },

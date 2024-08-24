@@ -38,15 +38,17 @@ return {
     'folke/which-key.nvim',
     event = 'VimEnter',
     config = function()
-      require('which-key').setup()
+      require('which-key').setup({
+        notify = false,
+      })
 
       -- Document existing key chains
-      require('which-key').register({
-        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+      require('which-key').add({
+        { '<leader>c', group = '[C]ode' },
+        { '<leader>d', group = '[D]ocument' },
+        { '<leader>r', group = '[R]ename' },
+        { '<leader>s', group = '[S]earch' },
+        { '<leader>w', group = '[W]orkspace' },
       })
     end,
   },
@@ -83,7 +85,6 @@ return {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        nix = { 'nixfmt' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -307,6 +308,19 @@ return {
 
     keys = {
       { '<leader>sr', '<cmd>lua require("spectre").toggle()<CR>', mode = 'n', desc = 'Toggle Spectre' },
+    },
+  },
+
+  {
+    'akinsho/toggleterm.nvim',
+    version = '*',
+    opts = {
+      open_mapping = [[<C-\>]],
+      persist_mode = false, -- does not play nice with auto insert mode autocmds
+      direction = 'float',
+      float_opts = {
+        border = 'curved',
+      },
     },
   },
 }
