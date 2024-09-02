@@ -8,6 +8,10 @@ vim.g.rustaceanvim = {
   server = {
     load_vscode_settings = true,
     auto_attach = function(bufnr)
+      local bufname = vim.api.nvim_buf_get_name(bufnr)
+      if vim.startswith(bufname, 'octo://') or vim.startswith(bufname, 'fugitive://') then
+        return false
+      end
       return vim.g.auto_ra_attach
     end,
     on_attach = function(client, _)
