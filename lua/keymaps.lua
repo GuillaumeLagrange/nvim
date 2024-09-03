@@ -43,8 +43,8 @@ vim.keymap.set('n', '<leader><tab>[', '<cmd>tabprevious<cr>', { desc = 'Previous
 vim.keymap.set('n', '<leader>msd', require('session').delete_all, { desc = 'Delete all sessions' })
 
 -- Invert ; and : mappings
-vim.keymap.set('n', ';', ':', { noremap = false })
-vim.keymap.set('n', ':', ';', { noremap = false })
+vim.keymap.set({ 'n', 'v' }, ';', ':', { noremap = false })
+vim.keymap.set({ 'n', 'v' }, ':', ';', { noremap = false })
 
 vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
