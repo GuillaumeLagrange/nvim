@@ -51,7 +51,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({ import = 'plugins' }, {
   dev = {
     fallback = true,
-    path = '~/nvim-plugins',
+    path = '~/neovim-plugins',
   },
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -72,5 +72,4 @@ require('lazy').setup({ import = 'plugins' }, {
       lazy = '💤 ',
     },
   },
-  lockfile = '~/home-manager/nvim/lazy-lock.json'
 })

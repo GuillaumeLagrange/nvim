@@ -36,4 +36,15 @@ M.get_git_root = function()
   return vim.fn.fnamemodify(dot_git_path, ':h')
 end
 
+M.close_octo_buffers = function()
+  local buffers = vim.api.nvim_list_bufs()
+  for _, buf in ipairs(buffers) do
+    local buf_name = vim.api.nvim_buf_get_name(buf)
+
+    if buf_name:match('^octo://') and vim.api.nvim_get_option_value('modified', {buf = buf}) then
+      vim.api.nvim_buf_delete(buf, { force = true })
+    end
+  end
+end
+
 return M

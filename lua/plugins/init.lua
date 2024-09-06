@@ -272,7 +272,15 @@ return {
       enable_builtin = true,
     },
     keys = {
-      { '<leader>gpo', '<cmd>Octo pr<CR>', mode = 'n', desc = 'Open PR for current branch' },
+      {
+        '<leader>gpo',
+        function()
+          require('utils').close_octo_buffers()
+          vim.api.nvim_command('Octo pr')
+        end,
+        mode = 'n',
+        desc = 'Open PR for current branch',
+      },
       { '<leader>gpy', '<cmd>Octo pr url<CR>', mode = 'n', desc = 'Yank PR url' },
       {
         '<leader>gpr',
@@ -283,7 +291,7 @@ return {
         mode = 'n',
         desc = 'Disable ra auto attach',
       },
-      { '<leader>gca', '<cmd>Octo comment add<CR>', mode = 'n', desc = 'Add comment' },
+      { '<leader>gca', '<cmd>Octo comment add<CR>', mode = { 'n', 'v' }, desc = 'Add comment' },
     },
   },
 

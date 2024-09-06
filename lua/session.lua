@@ -2,16 +2,16 @@ local M = {}
 
 local function get_session_name()
   local name = string.gsub(vim.fn.getcwd(), '/', '_')
-  local branch = vim.trim(vim.fn.system('git branch --show-current'))
-  if vim.v.shell_error == 0 and branch ~= '' then
-    return name .. '_' .. branch
-  else
-    return name
-  end
+  -- local branch = vim.trim(vim.fn.system('git branch --show-current'))
+  -- if vim.v.shell_error == 0 and branch ~= '' then
+  --   return name .. '_' .. branch
+  -- else
+  return name
+  -- end
 end
 
 if vim.fn.argc(-1) == 0 then
-  vim.api.nvim_create_autocmd({ 'VimEnter', 'FocusGained' }, {
+  vim.api.nvim_create_autocmd({ 'VimEnter' }, {
     nested = true,
     callback = function()
       local session_name = get_session_name()
