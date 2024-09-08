@@ -91,6 +91,7 @@ return { -- LSP Configuration & Plugins
     -- Enable lua lsp
     require('lspconfig').lua_ls.setup({})
     require('lspconfig').jsonls.setup({})
+    require('lspconfig').tsserver.setup({})
     local flakePath = '(builtins.getFlake "/home/guillaume/dotfiles")'
     require('lspconfig').nixd.setup({
       settings = {
