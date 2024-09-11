@@ -261,44 +261,6 @@ return {
   },
 
   {
-    'pwntester/octo.nvim',
-    cmd = 'Octo',
-    dev = true,
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-      'nvim-tree/nvim-web-devicons',
-    },
-    opts = {
-      picker = 'telescope',
-      use_local_fs = true,
-      enable_builtin = true,
-    },
-    keys = {
-      {
-        '<leader>gpo',
-        function()
-          require('utils').close_octo_buffers()
-          vim.api.nvim_command('Octo pr')
-        end,
-        mode = 'n',
-        desc = 'Open PR for current branch',
-      },
-      { '<leader>gpy', '<cmd>Octo pr url<CR>', mode = 'n', desc = 'Yank PR url' },
-      {
-        '<leader>gpr',
-        function()
-          vim.g.auto_ra_attach = not vim.g.auto_ra_attach
-          vim.print(vim.g.auto_ra_attach)
-        end,
-        mode = 'n',
-        desc = 'Disable ra auto attach',
-      },
-      { '<leader>gca', '<cmd>Octo comment add<CR>', mode = { 'n', 'v' }, desc = 'Add comment' },
-    },
-  },
-
-  {
     'akinsho/git-conflict.nvim',
     version = '*',
     lazy = false,

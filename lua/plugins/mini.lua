@@ -1,3 +1,5 @@
+local session = require('session')
+
 return { -- Collection of various small independent plugins/modules
   'echasnovski/mini.nvim',
   config = function()
@@ -32,6 +34,7 @@ return { -- Collection of various small independent plugins/modules
     require('mini.sessions').setup({
       file = '',
       verbose = { read = true, write = false, delete = true },
+      hooks = { pre = { write = session.close_ephemeral_buffers } },
     })
 
     -- Simple and easy statusline.

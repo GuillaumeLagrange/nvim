@@ -103,6 +103,7 @@ return { -- LSP Configuration & Plugins
     require('lspconfig').lua_ls.setup({})
     require('lspconfig').jsonls.setup({})
     require('lspconfig').ts_ls.setup({})
+    require('lspconfig').clangd.setup({})
     local flakePath = '(builtins.getFlake "/home/guillaume/dotfiles")'
     require('lspconfig').nixd.setup({
       settings = {

@@ -50,4 +50,18 @@ M.delete_all = function()
   end
 end
 
+M.close_ephemeral_buffers = function()
+  -- define a table with patterns
+  local patterns = { 'fugitive://.*', 'term://.*', 'octo://.*', 'OctoChangedFile.*' }
+
+  -- close all buffers when the name matches any of the patter
+  for _, pattern in ipairs(patterns) do
+    for _, buffer in ipairs(vim.api.nvim_list_bufs()) do
+      if vim.fn.bufname(buffer):match(pattern) then
+        vim.api.nvim_buf_delete(buffer, { force = true })
+      end
+    end
+  end
+end
+
 return M
