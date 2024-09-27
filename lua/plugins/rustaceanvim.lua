@@ -15,13 +15,8 @@ vim.g.rustaceanvim = {
       return vim.g.auto_ra_attach
     end,
     on_attach = function(client, _)
-      client.server_capabilities.workspace.didChangeWatchedFiles = {
-        dynamicRegistration = false,
-        relativePatternSupport = false,
-      }
-
       vim.api.nvim_create_autocmd({ 'BufEnter' }, {
-        desc = 'Resize splits when resizing the window',
+        desc = 'Automatically reload cargo settings',
         pattern = { '*.rs' },
         callback = function()
           vim.cmd('RustAnalyzer reloadSettings')
