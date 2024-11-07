@@ -55,22 +55,6 @@ return {
     end,
   },
 
-  {
-    'j-hui/fidget.nvim',
-    opts = {
-      notification = {
-        window = {
-          winblend = 0,
-        },
-      },
-      progress = {
-        lsp = {
-          progress_ringbuf_size = 4096,
-        },
-      },
-    },
-  },
-
   -- Autoformat
   {
     'stevearc/conform.nvim',
@@ -162,12 +146,6 @@ return {
         end,
       })
     end,
-  },
-
-  {
-    'windwp/nvim-autopairs',
-    event = 'InsertEnter',
-    config = true,
   },
 
   {

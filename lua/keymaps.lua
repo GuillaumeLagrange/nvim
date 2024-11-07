@@ -24,6 +24,9 @@ vim.keymap.set('n', '<leader>uh', utils.toggle_inlay_hints, { desc = 'Toggle inl
 vim.keymap.set('n', '<leader>un', utils.toggle_relative_number, { desc = 'Toggle relative line number' })
 vim.keymap.set('n', '<leader>ud', utils.toggle_diagnostics, { desc = 'Toggle diagnostics' })
 vim.keymap.set('n', '<leader>uu', utils.toggle_diagnostic_underline, { desc = 'Toggle underlines' })
+vim.keymap.set('n', '<leader>um', function()
+  utils.toggle_option('modifiable')
+end, { desc = 'Toggle modifiable' })
 
 vim.keymap.set('n', '[q', vim.cmd.cprev, { desc = 'Previous quickfix' })
 vim.keymap.set('n', ']q', vim.cmd.cnext, { desc = 'Next quickfix' })

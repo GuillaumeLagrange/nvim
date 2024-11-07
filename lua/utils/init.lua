@@ -41,10 +41,16 @@ M.close_octo_buffers = function()
   for _, buf in ipairs(buffers) do
     local buf_name = vim.api.nvim_buf_get_name(buf)
 
-    if buf_name:match('^octo://') and vim.api.nvim_get_option_value('modified', {buf = buf}) then
+    if buf_name:match('^octo://') and vim.api.nvim_get_option_value('modified', { buf = buf }) then
       vim.api.nvim_buf_delete(buf, { force = true })
     end
   end
+end
+
+M.toggle_option = function(option_name)
+  local buf = vim.api.nvim_get_current_buf()
+  local value = vim.api.nvim_buf_get_option(buf, option_name)
+  vim.api.nvim_buf_set_option(buf, option_name, not value)
 end
 
 return M

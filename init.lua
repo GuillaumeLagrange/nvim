@@ -48,6 +48,7 @@ end
 ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
+vim.cmd('cnoreabbrev lazy Lazy')
 require('lazy').setup({ import = 'plugins' }, {
   dev = {
     fallback = true,

@@ -9,7 +9,89 @@ return { -- Collection of various small independent plugins/modules
     -- Add/delete/replace surroundings (brackets, quotes, etc.)
     require('mini.surround').setup()
 
-    require('mini.files').setup()
+    require('mini.files').setup({
+      mappings = {
+        close = 'q',
+        go_in = '<C-L>',
+        go_in_plus = 'L',
+        go_out = '<C-H>',
+        go_out_plus = 'H',
+        mark_goto = "'",
+        mark_set = 'm',
+        reset = '<BS>',
+        reveal_cwd = '@',
+        show_help = 'g?',
+        synchronize = '=',
+        trim_left = '<',
+        trim_right = '>',
+      },
+    })
+
+    require('mini.notify').setup()
+
+    require('mini.pairs').setup({
+      mappings = {
+        ['('] = { action = 'open', pair = '()', neigh_pattern = '[^\\].' },
+        ['['] = { action = 'open', pair = '[]', neigh_pattern = '[^\\].' },
+        ['{'] = { action = 'open', pair = '{}', neigh_pattern = '[^\\].' },
+
+        [')'] = { action = 'close', pair = '()', neigh_pattern = '[^\\].' },
+        [']'] = { action = 'close', pair = '[]', neigh_pattern = '[^\\].' },
+        ['}'] = { action = 'close', pair = '{}', neigh_pattern = '[^\\].' },
+
+        ['"'] = { action = 'closeopen', pair = '""', neigh_pattern = '[^\\].', register = { cr = false } },
+        ["'"] = { action = 'closeopen', pair = "''", neigh_pattern = '[^%a\\].', register = { cr = false } },
+        ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = '[^\\].', register = { cr = false } },
+      },
+    })
+
+    require('mini.indentscope').setup({
+      -- Draw options
+      draw = {
+        -- Delay (in ms) between event and start of drawing scope indicator
+        delay = 100,
+
+        -- Animation rule for scope's first drawing. A function which, given
+        -- next and total step numbers, returns wait time (in ms). See
+        -- |MiniIndentscope.gen_animation| for builtin options. To disable
+        -- animation, use `require('mini.indentscope').gen_animation.none()`.
+        --<function: implements constant 20ms between steps>,
+        animation = require('mini.indentscope').gen_animation.none(),
+
+        -- Symbol priority. Increase to display on top of more symbols.
+        priority = 2,
+      },
+
+      -- Module mappings. Use `''` (empty string) to disable one.
+      mappings = {
+        -- Textobjects
+        object_scope = 'ii',
+        object_scope_with_border = 'ai',
+
+        -- Motions (jump to respective border line; if not present - body line)
+        goto_top = '[i',
+        goto_bottom = ']i',
+      },
+
+      -- Options which control scope computation
+      options = {
+        -- Type of scope's border: which line(s) with smaller indent to
+        -- categorize as border. Can be one of: 'both', 'top', 'bottom', 'none'.
+        border = 'both',
+
+        -- Whether to use cursor column when computing reference indent.
+        -- Useful to see incremental scopes with horizontal cursor movements.
+        indent_at_cursor = true,
+
+        -- Whether to first check input line to be a border of adjacent scope.
+        -- Use it if you want to place cursor on function header to get scope of
+        -- its body.
+        try_as_border = false,
+      },
+
+      -- Which character to use for drawing scope indicator
+      symbol = '|',
+    })
 
     require('mini.bufremove').setup()
     vim.keymap.set('n', '<leader>bd', function()
