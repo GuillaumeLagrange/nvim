@@ -274,4 +274,20 @@ return {
       },
     },
   },
+
+  {
+    'j-hui/fidget.nvim',
+    opts = {
+      notification = {
+        window = {
+          winblend = 0,
+        },
+      },
+      progress = {
+        lsp = {
+          progress_ringbuf_size = 4096,
+        },
+      },
+    },
+  },
 }

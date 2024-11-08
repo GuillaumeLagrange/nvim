@@ -27,8 +27,6 @@ return { -- Collection of various small independent plugins/modules
       },
     })
 
-    require('mini.notify').setup()
-
     require('mini.pairs').setup({
       mappings = {
         ['('] = { action = 'open', pair = '()', neigh_pattern = '[^\\].' },
