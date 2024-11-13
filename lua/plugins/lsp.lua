@@ -100,7 +100,15 @@ return { -- LSP Configuration & Plugins
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
     -- Enable lua lsp
-    require('lspconfig').lua_ls.setup({})
+    require('lspconfig').lua_ls.setup({
+      settings = {
+        Lua = {
+          diagnostics = {
+            disable = { 'redefined-local' },
+          },
+        },
+      },
+    })
     require('lspconfig').jsonls.setup({})
     require('lspconfig').ts_ls.setup({})
     require('lspconfig').clangd.setup({ filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda' } })

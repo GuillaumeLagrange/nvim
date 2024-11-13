@@ -1,5 +1,13 @@
 vim.cmd('cnoreabbrev octo Octo')
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'octo',
+  callback = function()
+    vim.keymap.set('i', '@', '@<C-x><C-o>', { silent = true, buffer = true })
+    vim.keymap.set('i', '#', '#<C-x><C-o>', { silent = true, buffer = true })
+  end,
+})
+
 return {
   'pwntester/octo.nvim',
   dev = true,
@@ -23,6 +31,9 @@ return {
       reviews = {
         auto_show_threads = false,
         focus = 'right',
+      },
+      suppress_missing_scope = {
+        projects_v2 = true,
       },
       default_to_projects_v2 = true,
       mappings_disable_default = true,

@@ -29,7 +29,6 @@
   "nvim-treesitter": { "branch": "master", "commit": "eab2005cb5a839abb4af9961a76bbf819650a1a9" },
   "nvim-treesitter-context": { "branch": "master", "commit": "a2a334900d3643de585ac5c6140b03403454124f" },
   "nvim-web-devicons": { "branch": "master", "commit": "19d257cf889f79f4022163c3fbb5e08639077bd8" },
-  "octo.nvim": { "branch": "master", "commit": "44060b7ad1153d80ec2a30ebfaf9957d58d6c69e" },
   "one-small-step-for-vimkind": { "branch": "main", "commit": "ad065ad2c814249cfb9e344ce5b2b35d36fbc09f" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "e0f9b3efe150724af2d2ed59997d5ece373840e3" },
@@ -46,6 +45,6 @@
   "vim-oscyank": { "branch": "main", "commit": "4b068e5b553f907c5f6d00b0ab9e1e3b98cf71bf" },
   "vim-rhubarb": { "branch": "master", "commit": "ee69335de176d9325267b0fd2597a22901d927b1" },
   "vim-sleuth": { "branch": "master", "commit": "be69bff86754b1aa5adcbb527d7fcd1635a84080" },
-  "vscode-js-debug": { "branch": "main", "commit": "2249345ba43984d62a161bbe3b3bef02f8ff45e2" },
+  "vscode-js-debug": { "branch": "main", "commit": "19879406b90cd926e83720da7cf30bda752b66e5" },
   "which-key.nvim": { "branch": "main", "commit": "68e37e12913a66b60073906f5d3f14dee0de19f2" }
 }

@@ -28,8 +28,17 @@ return {
         --  All the info you're looking for is in `:help telescope.setup()`
         defaults = {
           path_display = { 'truncate' },
+          mappings = {
+            i = {
+              ['<C-h>'] = 'which_key',
+              ['<C-l>'] = 'select_default',
+            },
+            n = {
+              ['<C-h>'] = 'which_key',
+              ['<C-l>'] = 'select_default',
+            },
+          },
         },
-        -- pickers = {}
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
