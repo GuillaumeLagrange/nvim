@@ -53,4 +53,37 @@ M.toggle_option = function(option_name)
   vim.api.nvim_buf_set_option(buf, option_name, not value)
 end
 
+M.close_windowless_buffers = function()
+  local all_buffers = vim.api.nvim_list_bufs()
+  local visible_buffers = {}
+
+  -- Collect all buffers currently displayed in visible windows
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+
+    visible_buffers[buf] = true
+  end
+
+  vim.print(vim.inspect(visible_buffers))
+
+  -- Iterate through all buffers and delete the hidden ones
+  for _, buf in ipairs(all_buffers) do
+    if not visible_buffers[buf] then
+      if not vim.api.nvim_buf_get_option(buf, 'modified') then
+        vim.api.nvim_buf_delete(buf, { force = false })
+      else
+        local choice = vim.fn.confirm(('Save changes to %q?'):format(vim.fn.bufname()), '&Yes\n&No\n&Cancel')
+        if choice == 1 then -- Yes
+          vim.api.nvim_buf_call(buf, function()
+            vim.cmd('write')
+          end)
+          vim.api.nvim_buf_delete(buf, { force = false })
+        elseif choice == 2 then -- No
+          vim.api.nvim_buf_delete(buf, { force = true })
+        end
+      end
+    end
+  end
+end
+
 return M

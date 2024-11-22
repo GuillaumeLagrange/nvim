@@ -31,7 +31,8 @@ end, { desc = 'Toggle modifiable' })
 vim.keymap.set('n', '[q', vim.cmd.cprev, { desc = 'Previous quickfix' })
 vim.keymap.set('n', ']q', vim.cmd.cnext, { desc = 'Next quickfix' })
 
-vim.keymap.set('n', '<leader>bo', '<cmd>%bd!|e#|bd!#<cr>', { desc = 'Delete all buffers except current' })
+vim.keymap.set('n', '<leader>bo', utils.close_windowless_buffers, { desc = 'Delete all buffers not in a window' })
+vim.keymap.set('n', '<leader>bO', '<cmd>%bd!|e#|bd!#<cr>', { desc = 'Delete all buffers except current' })
 
 -- Tabs
 vim.keymap.set('n', '<leader><tab>l', '<cmd>tablast<cr>', { desc = 'Last tab' })
