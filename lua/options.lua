@@ -53,3 +53,5 @@ vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
 vim.o.swapfile = false
 vim.o.autoread = true
+
+vim.o.exrc = true

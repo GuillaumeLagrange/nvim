@@ -70,7 +70,7 @@ M.close_windowless_buffers = function()
   for _, buf in ipairs(all_buffers) do
     if not visible_buffers[buf] then
       if not vim.api.nvim_buf_get_option(buf, 'modified') then
-        vim.api.nvim_buf_delete(buf, { force = false })
+        vim.api.nvim_buf_delete(buf, { force = true })
       else
         local choice = vim.fn.confirm(('Save changes to %q?'):format(vim.fn.bufname()), '&Yes\n&No\n&Cancel')
         if choice == 1 then -- Yes
