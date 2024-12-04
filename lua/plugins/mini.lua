@@ -64,10 +64,14 @@ return { -- Collection of various small independent plugins/modules
     end, { desc = 'Delete Buffer (force)' })
 
     require('mini.sessions').setup({
-      file = '',
-      verbose = { read = true, write = false, delete = true },
+      autoread = true,
+      autowrite = true,
+      file = 'Session.vim',
+      verbose = { read = true, write = true, delete = true },
       hooks = { pre = { write = session.close_ephemeral_buffers } },
     })
+
+    require('mini.starter').setup({})
 
     -- Simple and easy statusline.
     local statusline = require('mini.statusline')
