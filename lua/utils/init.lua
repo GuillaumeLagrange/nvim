@@ -77,7 +77,7 @@ M.close_windowless_buffers = function()
           vim.api.nvim_buf_call(buf, function()
             vim.cmd('write')
           end)
-          vim.api.nvim_buf_delete(buf, { force = false })
+          vim.api.nvim_buf_delete(buf, { force = true })
         elseif choice == 2 then -- No
           vim.api.nvim_buf_delete(buf, { force = true })
         end
