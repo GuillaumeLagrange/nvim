@@ -110,25 +110,6 @@ return {
   },
 
   {
-    'zbirenbaum/copilot.lua',
-    opts = {
-      suggestion = {
-        enabled = true,
-        auto_trigger = true,
-        debounce = 75,
-        keymap = {
-          accept = '<M-y>',
-          accept_word = '<M-w>',
-          accept_line = '<M-l>',
-          next = '<M-]>',
-          prev = '<M-[>',
-          dismiss = '<M-d>',
-        },
-      },
-    },
-  },
-
-  {
     'ojroques/vim-oscyank',
     config = function()
       -- Should be accompanied by a setting clipboard in tmux.conf, also see

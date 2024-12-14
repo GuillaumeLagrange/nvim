@@ -22,13 +22,23 @@ vim.g.rustaceanvim = {
       end
       return vim.g.auto_ra_attach
     end,
-    on_attach = function(client, _)
+    on_attach = function(client, bufnr)
       vim.api.nvim_create_autocmd({ 'BufEnter' }, {
         desc = 'Automatically reload cargo settings',
         pattern = { '*.rs' },
         callback = function()
           vim.cmd('RustAnalyzer reloadSettings')
         end,
+      })
+
+      -- Create mappings for buffer
+      vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>lrd', '<Cmd>RustLsp debuggables<CR>', {
+        noremap = true,
+        desc = 'List rust debuggables',
+      })
+      vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>lre', '<Cmd>RustLsp expandMacro<CR>', {
+        noremap = true,
+        desc = 'Expand macro',
       })
     end,
     default_settings = {
@@ -38,7 +48,7 @@ vim.g.rustaceanvim = {
     },
   },
   -- DAP configuration
-  dap = {},
+  -- dap = {},
 }
 
 return {

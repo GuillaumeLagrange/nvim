@@ -64,8 +64,6 @@ M.close_windowless_buffers = function()
     visible_buffers[buf] = true
   end
 
-  vim.print(vim.inspect(visible_buffers))
-
   -- Iterate through all buffers and delete the hidden ones
   for _, buf in ipairs(all_buffers) do
     if not visible_buffers[buf] then

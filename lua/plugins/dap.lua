@@ -62,7 +62,7 @@ return {
       -- Virtual text.
       {
         'theHamsta/nvim-dap-virtual-text',
-        opts = { virt_text_pos = 'eol' },
+        opts = { virt_text_pos = 'inline' },
       },
       -- JS/TS debugging.
       {
@@ -72,10 +72,10 @@ return {
           adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },
         },
       },
-      {
-        'microsoft/vscode-js-debug',
-        build = 'npm i && npm run compile vsDebugServerBundle && rm -rf out && mv -f dist out',
-      },
+      -- {
+      --   'microsoft/vscode-js-debug',
+      --   build = 'npm i && npm run compile vsDebugServerBundle && rm -rf out && mv -f dist out',
+      -- },
       -- Lua adapter.
       {
         'jbyuki/one-small-step-for-vimkind',
@@ -173,11 +173,14 @@ return {
       -- C configurations.
       dap.adapters.codelldb = {
         type = 'server',
-        host = 'localhost',
-        port = '${port}',
+        host = '127.0.0.1',
+        port = 13000,
         executable = {
           command = 'codelldb',
-          args = { '--port', '${port}' },
+          args = { '--port', '13000' },
+
+          -- on windows you may have to uncomment this:
+          -- detached = false,
         },
       }
 
