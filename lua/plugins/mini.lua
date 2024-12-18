@@ -53,43 +53,5 @@ return { -- Collection of various small independent plugins/modules
     })
 
     require('mini.starter').setup({})
-    -- Simple and easy statusline.
-    local statusline = require('mini.statusline')
-    statusline.setup({ use_icons = vim.g.have_nerd_font })
-    ---@diagnostic disable-next-line: duplicate-set-field
-    statusline.section_location = function()
-      return '%2l:%-2'
-    end
-
-    ---@diagnostic disable-next-line: duplicate-set-field
-    statusline.section_filename = function()
-      -- Relative file name with modified and ro flags
-      return '%f%m%r'
-    end
-    ---@diagnostic disable-next-line: duplicate-set-field
-    statusline.inactive = function()
-      -- Relative file name with modified and ro flags
-      return '%#MiniStatuslineInactive#%f%='
-    end
-
-    ---@diagnostic disable-next-line: duplicate-set-field
-    statusline.section_git = function(args)
-      if vim.bo.buftype ~= '' then
-        return ''
-      end
-      -- Truncated git branch
-      local head = vim.b.gitsigns_head or '-'
-      local truncated_head = string.sub(head, 1, 20)
-      local signs = statusline.is_truncated(args.trunc_width) and '' or (vim.b.gitsigns_status or '')
-      local icon = args.icon or (vim.g.have_nerd_font and '') or 'Git'
-
-      if signs == '' then
-        if truncated_head == '-' or truncated_head == '' then
-          return ''
-        end
-        return string.format('%s %s', icon, truncated_head)
-      end
-      return string.format('%s %s %s', icon, truncated_head, signs)
-    end
   end,
 }

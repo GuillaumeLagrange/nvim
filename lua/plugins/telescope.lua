@@ -69,7 +69,7 @@ return {
         require('telescope').extensions.file_browser.file_browser({ path = require('utils').get_git_root() })
       end, { desc = 'Cd from git root' })
       vim.keymap.set('n', '<leader>sb', function()
-        builtin.buffers({ sort_mru = true, ignore_current_buffer = true })
+        builtin.buffers({ sort_mru = true })
       end, {
         desc = '[S]earch [B]uffers',
       })
