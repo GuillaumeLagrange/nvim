@@ -1,7 +1,26 @@
 return {
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-
   'tpope/vim-abolish',
+  'tpope/vim-surround',
+
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = function()
+      local npairs = require('nvim-autopairs')
+      local Rule = require('nvim-autopairs.rule')
+      npairs.setup({
+        check_ts = true,
+      })
+      npairs.add_rules({
+        Rule('<', '>'):with_pair(function(opts)
+          local before_char = opts.line:sub(opts.col - 1, opts.col - 1)
+          -- Insert > only if the character before < is not whitespace
+          return before_char ~= ' ' and before_char ~= ''
+        end),
+      })
+    end,
+  },
 
   -- Handle big files better
   'pteroctopus/faster.nvim',

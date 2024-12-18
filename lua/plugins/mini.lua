@@ -6,9 +6,6 @@ return { -- Collection of various small independent plugins/modules
     -- Better Around/Inside textobjects
     require('mini.ai').setup({ n_lines = 500 })
 
-    -- Add/delete/replace surroundings (brackets, quotes, etc.)
-    require('mini.surround').setup()
-
     require('mini.files').setup({
       mappings = {
         close = 'q',
@@ -24,22 +21,6 @@ return { -- Collection of various small independent plugins/modules
         synchronize = '=',
         trim_left = '<',
         trim_right = '>',
-      },
-    })
-
-    require('mini.pairs').setup({
-      mappings = {
-        ['('] = { action = 'open', pair = '()', neigh_pattern = '[^\\].' },
-        ['['] = { action = 'open', pair = '[]', neigh_pattern = '[^\\].' },
-        ['{'] = { action = 'open', pair = '{}', neigh_pattern = '[^\\].' },
-
-        [')'] = { action = 'close', pair = '()', neigh_pattern = '[^\\].' },
-        [']'] = { action = 'close', pair = '[]', neigh_pattern = '[^\\].' },
-        ['}'] = { action = 'close', pair = '{}', neigh_pattern = '[^\\].' },
-
-        ['"'] = { action = 'closeopen', pair = '""', neigh_pattern = '[^\\].', register = { cr = false } },
-        ["'"] = { action = 'closeopen', pair = "''", neigh_pattern = '[^%a\\].', register = { cr = false } },
-        ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = '[^\\].', register = { cr = false } },
       },
     })
 
@@ -72,16 +53,12 @@ return { -- Collection of various small independent plugins/modules
     })
 
     require('mini.starter').setup({})
-
     -- Simple and easy statusline.
     local statusline = require('mini.statusline')
     statusline.setup({ use_icons = vim.g.have_nerd_font })
-    -- You can configure sections in the statusline by overriding their
-    -- default behavior. For example, here we set the section for
-    -- cursor location to LINE:COLUMN
     ---@diagnostic disable-next-line: duplicate-set-field
     statusline.section_location = function()
-      return '%2l:%-2v'
+      return '%2l:%-2'
     end
 
     ---@diagnostic disable-next-line: duplicate-set-field
@@ -101,7 +78,6 @@ return { -- Collection of various small independent plugins/modules
         return ''
       end
       -- Truncated git branch
-
       local head = vim.b.gitsigns_head or '-'
       local truncated_head = string.sub(head, 1, 20)
       local signs = statusline.is_truncated(args.trunc_width) and '' or (vim.b.gitsigns_status or '')
