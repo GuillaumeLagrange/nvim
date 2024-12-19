@@ -15,7 +15,7 @@ return {
 
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
-      { 'nvim-telescope/telescope-file-browser.nvim' },
+      { 'nvim-telescope/telescope-frecency.nvim' },
 
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
 
@@ -56,7 +56,13 @@ return {
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [f]iles' })
+      -- vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [f]iles' })
+      vim.keymap.set('n', '<leader>sf', function()
+        require('telescope').extensions.frecency.frecency({
+          workspace = 'CWD',
+          path_display = { truncate = 10 },
+        })
+      end, { desc = '[S]earch [f]iles' })
       vim.keymap.set('n', '<leader>sF', function()
         builtin.find_files({ no_ignore = true })
       end, { desc = '[S]earch all [F]iles' })

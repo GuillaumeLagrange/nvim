@@ -1,5 +1,4 @@
 return {
-  'ofseed/copilot-status.nvim',
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons', 'ofseed/copilot-status.nvim' },

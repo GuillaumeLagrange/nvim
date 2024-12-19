@@ -9,12 +9,23 @@ local toggle_copilot = function()
 end
 
 return {
-  'github/copilot.vim',
-  lazy = false,
-  init = function()
-    vim.keymap.set('i', '<M-w>', '<Plug>(copilot-accept-word)', { desc = 'Accept copilot word' })
-    vim.keymap.set('i', '<M-l>', '<Plug>(copilot-accept-line)', { desc = 'Accept copilot line' })
-    vim.keymap.set('n', '<leader>uc', toggle_copilot, { desc = 'Toggle Copilot' })
-    vim.keymap.set('i', '<M-u>', toggle_copilot, { desc = 'Toggle Copilot' })
-  end,
+  {
+    'github/copilot.vim',
+    lazy = false,
+    init = function()
+      vim.keymap.set('i', '<M-w>', '<Plug>(copilot-accept-word)', { desc = 'Accept copilot word' })
+      vim.keymap.set('i', '<M-l>', '<Plug>(copilot-accept-line)', { desc = 'Accept copilot line' })
+      vim.keymap.set('n', '<leader>uc', toggle_copilot, { desc = 'Toggle Copilot' })
+      vim.keymap.set('i', '<M-u>', toggle_copilot, { desc = 'Toggle Copilot' })
+    end,
+  },
+  {
+    'CopilotC-Nvim/CopilotChat.nvim',
+    dependencies = {
+      { 'github/copilot.vim' },
+      { 'nvim-lua/plenary.nvim', branch = 'master' },
+    },
+    build = 'make tiktoken',
+    opts = {},
+  },
 }
