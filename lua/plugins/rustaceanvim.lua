@@ -44,6 +44,12 @@ vim.g.rustaceanvim = {
     default_settings = {
       ['rust-analyzer'] = {
         cachePriming = false,
+        rustfmt = {
+          extraArgs = {
+            '--config',
+            'format_code_in_doc_comments=true',
+          },
+        },
       },
     },
   },
