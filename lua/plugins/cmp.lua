@@ -17,9 +17,10 @@ return { -- Autocompletion
     },
     'saadparwaiz1/cmp_luasnip',
 
-    -- Adds other completion capabilities.
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
+    'hrsh7th/cmp-cmdline',
+    'hrsh7th/cmp-buffer',
 
     'ryo33/nvim-cmp-rust',
   },
@@ -35,7 +36,7 @@ return { -- Autocompletion
           luasnip.lsp_expand(args.body)
         end,
       },
-      completion = { completeopt = 'menu,menuone,noinsert' },
+      completion = { completeopt = 'menu,menuone,longest,noselect' },
 
       -- For an understanding of why these mappings were
       -- chosen, you will need to read `:help ins-completion`
@@ -131,6 +132,29 @@ return { -- Autocompletion
           cmp.config.compare.order,
         },
       },
+    })
+
+    -- `/` cmdline setup.
+    cmp.setup.cmdline({ '/', '?' }, {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = {
+        { name = 'buffer' },
+      },
+    })
+
+    -- `:` cmdline setup.
+    cmp.setup.cmdline(':', {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = 'path' },
+      }, {
+        {
+          name = 'cmdline',
+          option = {
+            ignore_cmds = { 'Man', '!' },
+          },
+        },
+      }),
     })
 
     local compare = require('cmp.config.compare')
