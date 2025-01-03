@@ -47,7 +47,7 @@ end
 
 M.close_ephemeral_buffers = function()
   -- define a table with patterns
-  local patterns = { 'fugitive://.*', 'term://.*', 'octo://.*', 'OctoChangedFile.*' }
+  local patterns = { 'fugitive://.*', 'term://.*', 'octo://.*', 'OctoChangedFile.*', 'diffview://.*' }
 
   -- close all buffers when the name matches any of the patter
   for _, pattern in ipairs(patterns) do
