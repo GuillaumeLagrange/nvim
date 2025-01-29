@@ -50,8 +50,8 @@ vim.keymap.set('n', '<leader>msd', require('session').delete_all, { desc = 'Dele
 vim.keymap.set({ 'n', 'v' }, ';', ':', { noremap = false })
 vim.keymap.set({ 'n', 'v' }, ':', ';', { noremap = false })
 
-vim.keymap.set('n', 'j', 'gj', { silent = true })
-vim.keymap.set('n', 'k', 'gk', { silent = true })
+vim.keymap.set({ 'n', 'v' }, 'j', 'gj', { silent = true })
+vim.keymap.set({ 'n', 'v' }, 'k', 'gk', { silent = true })
 
 -- better indenting
 vim.keymap.set('v', '<', '<gv')

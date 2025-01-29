@@ -281,5 +281,15 @@ return {
     },
   },
 
-  { 'sindrets/diffview.nvim' },
+  {
+    'sindrets/diffview.nvim',
+    config = function()
+      require('diffview').setup()
+
+      vim.keymap.set('n', '<leader>dvc', '<cmd>DiffviewClose<CR>', { desc = 'Close diffview' })
+      vim.keymap.set('n', '<leader>dvo', '<cmd>DiffviewOpen<CR>', { desc = 'Open diffview' })
+      vim.keymap.set('n', '<leader>dvm', '<cmd>DiffviewOpen main<CR>', { desc = 'Open diffview HEAD..main' })
+      vim.keymap.set('n', '<leader>dvf', '<cmd>DiffviewFileHistory %<CR>', { desc = 'Open diffview file history for current file' })
+    end,
+  },
 }

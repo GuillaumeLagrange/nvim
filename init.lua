@@ -3,6 +3,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 require('options')
+require('commands')
 require('keymaps')
 require('term')
 require('session')
