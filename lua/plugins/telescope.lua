@@ -61,10 +61,12 @@ return {
         require('telescope').extensions.frecency.frecency({
           workspace = 'CWD',
           path_display = { truncate = 10 },
+          auto_validate = true,
+          db_validate_threshold = 1,
         })
       end, { desc = '[S]earch [f]iles' })
       vim.keymap.set('n', '<leader>sF', function()
-        builtin.find_files({ no_ignore = true })
+        builtin.git_files({ use_file_path = true })
       end, { desc = '[S]earch all [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
